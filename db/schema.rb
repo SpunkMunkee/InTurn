@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_182119) do
+ActiveRecord::Schema.define(version: 2019_11_14_182533) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_182119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "category_products", force: :cascade do |t|
+    t.integer "Product_id", null: false
+    t.integer "Category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["Category_id"], name: "index_category_products_on_Category_id"
+    t.index ["Product_id"], name: "index_category_products_on_Product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "item"
     t.string "description"
@@ -76,4 +85,6 @@ ActiveRecord::Schema.define(version: 2019_11_14_182119) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "category_products", "Categories"
+  add_foreign_key "category_products", "Products"
 end
