@@ -1,6 +1,8 @@
-<h1>Products#index</h1>
+<div class=container>
+  <div class="row">
+    <%= render partial: 'products/product', collection: @products, locals: { item_is_link: true }, :class => "col"%>
+  </div>
+</div>
 
-<%# <%= render @products %>
-<%= render partial: 'products/product', collection: @products, locals: { item_is_link: true } %>
 
 

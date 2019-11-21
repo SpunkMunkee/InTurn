@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'categories/show'
-  get 'categories/index'
+  # get 'categories/show'
+  # get 'categories/index'
+  resources :categories, only: [:index, :show]
   resources :products, only: [:index, :show]
 
   root to: 'products#index'
