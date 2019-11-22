@@ -1,9 +1,22 @@
-<div class=container>
-<%= paginate @products %>
+<div class="container">
   <div class="row">
-    <%= render partial: 'products/product', collection: @products, locals: { item_is_link: true }, :class => "col"%>
+    <div class="col-2">
+    <h2>Shop by Category</h2>
+      <ul class="nav flex-column">
+      <% @categories.each do |category| %>
+        <li class="nav-item">
+           <%= link_to category.name, category %>
+        </li>
+      <% end%>
+    </ul>
+    </div>
+    <div class="col-10">
+      <%= paginate @products %>
+      <div class="row">
+        <%= render partial: 'products/product', collection: @products, locals: { item_is_link: true }, :class => "col"%>
+      </div>
+     </div>
+    </div>
   </div>
 </div>
-
-
 

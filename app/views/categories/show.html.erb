@@ -1,6 +1,15 @@
-<h1><%= @category.name %></h1>
 
-<% @category.Products.each do |product| %>
-  <p><%= link_to product.item, product %></p>
-<% end%>
 
+<%# <%= render partial: 'products/product', collection: @category.Products, locals: {item_is_link: true } %>
+
+<div class="container">
+    <div class="row">
+      <h1><%= @category.name %></h1>
+    </div>
+    <div>
+      <%= paginate @sorted %>
+    </div>
+    <div class="row">
+      <%= render partial: 'products/product', collection: @sorted, locals: { item_is_link: true }, :class => "col"%>
+    </div>
+</div>

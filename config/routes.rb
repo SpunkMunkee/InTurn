@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :products, only: [:index, :show]
 
+  collection do
+    get 'search_results'
+  end
+
   root to: 'products#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
