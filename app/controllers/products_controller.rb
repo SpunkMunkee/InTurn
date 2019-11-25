@@ -15,10 +15,15 @@ class ProductsController < ApplicationController
 
   def search_results
     @query = params[:query]
-    if params[:query]
-      @products = Product.where('item LIKE ?', "%#{@query}%")
+    @cat   = params[:category]
+
+    if @cat == "ALL"
+      @cat_name = "All Products"
+      @results = Product.where('item LIKE ?', "%#{@query}%")
     else
-      @products = Product.order(:item)
+      @category = Category.find(@cat)
+      @cat_name = @category.name
+      @results = @category.Products.where('item LIKE ?', "%#{@query}%")
     end
   end
 
