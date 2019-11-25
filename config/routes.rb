@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/show'
   # get 'categories/show'
   # get 'categories/index'
   resources :categories, only: [:index, :show]
