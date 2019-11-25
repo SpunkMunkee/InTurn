@@ -1,15 +1,29 @@
-
-
-<%# <%= render partial: 'products/product', collection: @category.Products, locals: {item_is_link: true } %>
-
-<div class="container">
-    <div class="row">
-      <h1><%= @category.name %></h1>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-5">
+    <h1><strong><%= @category.name %></strong></h1>
+  </div>
+  <div class="row mt-4">
+    <div class="col-3">
+      <h2><u>Shop by Category</u></h2>
+      <ul class="nav flex-column">
+        <% @categories.each do |category| %>
+        <li class="nav-item">
+           <%= link_to category.name, category %>
+        </li>
+        <% end%>
+      </ul>
     </div>
-    <div>
-      <%= paginate @sorted %>
+    <div class="col-9">
+      <div class="container">
+        <div class="row">
+          <%= render partial: 'products/product', collection: @sorted, locals: { item_is_link: true }, :class => "col"%>
+        </div>
+        <div class="row justify-content-start mt-5">
+          <%= paginate @sorted, window: 1 %>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <%= render partial: 'products/product', collection: @sorted, locals: { item_is_link: true }, :class => "col"%>
-    </div>
+  </div>
 </div>
+
+

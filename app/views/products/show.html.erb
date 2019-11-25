@@ -1,8 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-11"><%= render partial: 'product', object: @product, locals: { item_is_link: false } %></div>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-3">
+      <h2>Shop by Category</h2>
+      <ul class="nav flex-column">
+        <% @categories.each do |category| %>
+        <li class="nav-item">
+           <%= link_to category.name, category %>
+        </li>
+        <% end%>
+      </ul>
+    </div>
+    <div class="col-9">
+      <div class="container">
+        <div class="row">
+           <div class="col-11"><%= render partial: 'product', object: @product, locals: { item_is_link: false } %></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 
 
 

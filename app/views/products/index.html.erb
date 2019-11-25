@@ -1,21 +1,56 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-    <h2>Shop by Category</h2>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-5">
+    <h1><strong>Welcome to InTurn</strong></h1>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-3">
+
+
+    <details>
+      <summary>Shopping Cart</summary>
+      <% if @cart.empty? %>
+        <p>No items in cart.</p>
+      <% else %>
+        <ul>
+          <% @cart.each do |product_id, product| %>
+            <li>
+              <%= product["item_count"] %> |
+              <%= link_to '+', add_to_cart_path(product_id), method: :post %>
+              <%= link_to '-', delete_from_cart_path(product_id), method: :post %>
+              <%= link_to 'x', remove_from_cart_path(product_id), method: :delete %> |
+              <%= product["item"] %>
+            </li>
+          <% end %>
+         </ul>
+       <% end %>
+     </details>
+
+
+
+
+
+
+
+
+      <h2><u>Shop by Category</u></h2>
       <ul class="nav flex-column">
-      <% @categories.each do |category| %>
+        <% @categories.each do |category| %>
         <li class="nav-item">
            <%= link_to category.name, category %>
         </li>
-      <% end%>
-    </ul>
+        <% end%>
+      </ul>
     </div>
-    <div class="col-10">
-      <%= paginate @products %>
-      <div class="row">
-        <%= render partial: 'products/product', collection: @products, locals: { item_is_link: true }, :class => "col"%>
+    <div class="col-9">
+      <div class="container">
+        <div class="row">
+          <%= render partial: 'products/product', collection: @products, locals: { item_is_link: true }, :class => "col"%>
+        </div>
+        <div class="row justify-content-start mt-5">
+          <%= paginate @products, window: 1 %>
+        </div>
       </div>
-     </div>
     </div>
   </div>
 </div>

@@ -1,15 +1,15 @@
-<div class="card" style="width: 18rem;">
-  <%= image_tag(product.image, alt: "Product", class: "img-responsive") %>
+<div class="card m-2" style="width: 18rem;">
+  <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
+  <div style="width: 16rem; background: #e3e3e3"></div>
+  <%# <%= image_tag(product.image, alt: "Product", class: "card-img-top, img-responsive") %>
   <div class="card-body">
     <% if item_is_link%>
       <h5 class="card-title"><%= link_to product.item, product %></h5>
     <% else %>
       <h5 class="card-title"><%= product.item %></h5>
     <% end %>
-    <h5><strong>Price:</strong> $<%= product.price %></h5>
+    <h5><strong>Price: </strong><%= number_to_currency product.price %></h5>
     <p class="card-text"><%= product.description %></p>
-    <% if item_is_link %>
-      <button class="btn btn-primary"><%= link_to "Visit Item", product, :class => "text-light" %></button>
-    <% end %>
-  </div>
+      <button class="btn btn-success"><%= link_to '+ cart', add_to_cart_path(product.id), method: :post, :class => "text-light" %></button>
+ </div>
 </div>
