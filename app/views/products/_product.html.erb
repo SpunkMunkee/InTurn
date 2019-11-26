@@ -19,6 +19,10 @@
     <% else %>
       <p class="card-text"><%= product.description %></p>
     <% end %>
+
+    <% product.Categories.each do |category| %>
+      <%= category.name %>
+    <% end %>
       <button class="btn btn-success mt-auto"><%= link_to '+ cart', add_to_cart_path(product.id), method: :post, :class => "text-light" %></button>
  </div>
 </div>
