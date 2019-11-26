@@ -9,12 +9,16 @@
       <h5 class="card-title"><%= product.item %></h5>
     <% end %>
     <h5><strong>Price: </strong><%= number_to_currency product.price %></h5>
+
+    <%if product.percentDiscount > 0.0 %>
+     <h6><%= (product.percentDiscount * 100).round(0) %>% off (now just <%= number_to_currency (product.price - (product.price * product.percentDiscount)) %>)</h6>
+    <% end %>
+
     <% if item_is_link%>
       <p class="card-text"><%= product.description.truncate(200) %></p>
     <% else %>
       <p class="card-text"><%= product.description %></p>
     <% end %>
-
       <button class="btn btn-success mt-auto"><%= link_to '+ cart', add_to_cart_path(product.id), method: :post, :class => "text-light" %></button>
  </div>
 </div>

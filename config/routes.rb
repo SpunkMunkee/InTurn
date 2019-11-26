@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
 
   resources :products, only: :index
+  resources :pages, only: :show
   resources :products, only: :show do
     collection do
       get 'search_results', to: ''

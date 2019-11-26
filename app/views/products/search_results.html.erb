@@ -1,8 +1,4 @@
-<%# <p>Your seach for '<%= @query %>
-<%# ' returned <%= pluralize(@products.size, 'result') %>
-<%# .</p>  %>
-
 <div>
-  <%= @cat_name %>
+  <h2><%= @cat_name %><span><h4>- <%= @results.count %> results</h4></span></h2>
   <%= render partial: 'product', collection: @results, locals: {item_is_link: true} %>
 </div>

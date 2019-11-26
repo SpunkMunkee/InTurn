@@ -20,7 +20,13 @@ class ProductsController < ApplicationController
     if @cat == "ALL"
       @cat_name = "All Products"
       @results = Product.where('item LIKE ?', "%#{@query}%")
-    else
+    elsif @cat == "SALE"
+      @cat_name = "On Sale"
+      @results = Product.where("percentDiscount > ?", 0.0)
+    elsif @cat == "RU"
+      @cat_name = "Recently Updated"
+      @results = Product.where("updated_at > ?", DateTime.now.change(hour: 0))
+    elsif
       @category = Category.find(@cat)
       @cat_name = @category.name
       @results = @category.Products.where('item LIKE ?', "%#{@query}%")
